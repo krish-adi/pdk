@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "pdk"
+version = "0.1.0"
+description = ""
+authors = ["Adithya Krishnan <krishsandeep@gmail.com>"]
+readme = "README.md"
+packages = [{include = "pdk", from = "src"}]
+
+
+[tool.poetry.scripts]
+pdk = "pdk.cli:main"
+
+
+[tool.poetry.dependencies]
+python = ">=3.7"
+click = "^8.1.3"
+jinja2 = "^3.1.2"
+pyyaml = "^6.0"
+jsonschema = "^4.17.3"
+pydantic = "^1.10.9"
+regex = "^2023.6.3"
+aiohttp = "^3.8.4"
+requests = "^2.31.0"
+
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.0.2"
+pytest = "^7.3.2"
+black = "^23.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,4 +1,5 @@
 from typing import List, Dict, Union
+from pdk.logger import logger
 from pdk.settings import Keys
 from pdk.agent.completer import CompletionAgent
 from pdk.agent.prompt import PromptTree, PromptSession
@@ -20,21 +21,19 @@ class AgentBuilder:
         self.prompt_tree: PromptTree = PromptTree(self._config.prompt_config)
         self._completion_agent = CompletionAgent(
             self._config.model_config, self._api_keys)
-        
+
         self._agent_id = AgentID(agent_name=self._config.name)
 
     async def aexecute(self, request: dict, agent_response: bool = False):
         _prompt = PromptSession(self._config.prompt_config.prompt_type)
         self.prompt_tree.execute(request, _prompt)
         response = await self._completion_agent.aexecute(_prompt, self._agent_id)
-        from pprint import pprint
-        pprint(asdict(response))
+        logger.debug(asdict(response))
         return response.completion
 
     def execute(self, request: dict, agent_response: bool = False):
         _prompt = PromptSession(self._config.prompt_config.prompt_type)
         self.prompt_tree.execute(request, _prompt)
         response = self._completion_agent.execute(_prompt, self._agent_id)
-        from pprint import pprint
-        pprint(asdict(response))
+        logger.debug(asdict(response))
         return response.completion

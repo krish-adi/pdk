@@ -1,9 +1,13 @@
 [tool.poetry]
 name = "pdk"
 version = "0.1.1"
-description = ""
+description = "PDK is a tool-kit for managing and writing prompts for LLMs."
 authors = ["Adithya Krishnan <krishsandeep@gmail.com>"]
+keywords = ["prompt", "LLM", "prompt engineering"]
 readme = "README.md"
+license = "Apache-2.0"
+homepage = "https://github.com/krish-adi/pdk"
+repository = "https://github.com/krish-adi/pdk"
 packages = [{include = "pdk", from = "src"}]
 
 
